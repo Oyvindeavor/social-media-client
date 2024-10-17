@@ -1,3 +1,5 @@
+import eslintPluginJest from 'eslint-plugin-jest';
+
 export default [
   {
     languageOptions: {
@@ -32,7 +34,7 @@ export default [
       },
     },
     plugins: {
-      jest: true,
+      jest: eslintPluginJest,
     },
     rules: {
       'jest/prefer-expect-assertions': 'off',
