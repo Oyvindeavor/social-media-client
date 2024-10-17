@@ -1,4 +1,5 @@
 import eslintPluginJest from 'eslint-plugin-jest';
+import eslintPluginCypress from 'eslint-plugin-cypress';
 
 export default [
   {
@@ -38,6 +39,25 @@ export default [
     },
     rules: {
       'jest/prefer-expect-assertions': 'off',
+    },
+  },
+
+  // Override for Cypress test files
+  {
+    files: ['**/*.cy.js'],
+    languageOptions: {
+      ecmaVersion: 2021,
+      sourceType: 'module',
+      globals: {
+        'cypress/globals': true,
+      },
+    },
+    plugins: {
+      cypress: eslintPluginCypress,
+    },
+    rules: {
+      'cypress/no-unnecessary-waiting': 'off',
+      'no-unused-vars': 'off',
     },
   },
 ];
