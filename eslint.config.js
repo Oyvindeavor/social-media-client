@@ -1,23 +1,43 @@
+import eslintPluginJest from 'eslint-plugin-jest';
+
 export default [
   {
     languageOptions: {
-      ecmaVersion: 2021, 
-      sourceType: "module", 
+      ecmaVersion: 2021,
+      sourceType: 'module',
       globals: {
-        window: "readonly",
-        document: "readonly",
-        process: "readonly",
-        module: "readonly"
-      }
+        window: 'readonly',
+        document: 'readonly',
+        process: 'readonly',
+        module: 'readonly',
+      },
     },
     linterOptions: {
-      reportUnusedDisableDirectives: true
+      reportUnusedDisableDirectives: true,
     },
     rules: {
-      "no-unused-vars": "warn", 
-      "semi": ["error", "always"], 
-      "quotes": ["error", "single"], 
-      "eqeqeq": "error"
-    }
-  }
+      'no-unused-vars': 'warn',
+      semi: ['error', 'always'],
+      quotes: ['error', 'single'],
+      eqeqeq: 'error',
+    },
+  },
+
+  // Override for Jest test files
+  {
+    files: ['**/*.test.js'],
+    languageOptions: {
+      ecmaVersion: 2021,
+      sourceType: 'module',
+      globals: {
+        jest: 'readonly',
+      },
+    },
+    plugins: {
+      jest: eslintPluginJest,
+    },
+    rules: {
+      'jest/prefer-expect-assertions': 'off',
+    },
+  },
 ];
