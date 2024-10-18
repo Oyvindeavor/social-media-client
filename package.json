@@ -11,7 +11,10 @@
     "lint": "eslint src/js/**/*.js",
     "lint:fix": "eslint --fix src/js/**/*.js",
     "prepare": "husky install",
-    "test": "npm run test-unit",
+    "test": "npm run test-unit && npm run test-e2e-cli",
+    "test-e2e": "cypress open",
+    "test-e2e-report": "cypress run --reporter mochawesome",
+    "test-e2e-cli": "cypress run",
     "test-unit": "jest"
   },
   "keywords": [],
@@ -20,7 +23,9 @@
   "devDependencies": {
     "@babel/core": "^7.25.8",
     "@babel/preset-env": "^7.25.8",
+    "cypress": "^13.15.0",
     "eslint": "^9.12.0",
+    "eslint-plugin-cypress": "^4.0.0",
     "eslint-plugin-jest": "^28.8.3",
     "husky": "^9.1.6",
     "install": "^0.13.0",
@@ -46,7 +51,8 @@
     "*.scss": [
       "prettier --w"
     ],
-    "!*.test.js": []
+    "!*.test.js": [],
+    "!*.cy.js": []
   },
   "jest": {
     "setupFiles": [
