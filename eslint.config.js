@@ -1,63 +1,69 @@
-import eslintPluginJest from 'eslint-plugin-jest';
-import eslintPluginCypress from 'eslint-plugin-cypress';
+import eslintPluginJest from "eslint-plugin-jest";
+import eslintPluginCypress from "eslint-plugin-cypress";
 
 export default [
   {
     languageOptions: {
       ecmaVersion: 2021,
-      sourceType: 'module',
+      sourceType: "module",
       globals: {
-        window: 'readonly',
-        document: 'readonly',
-        process: 'readonly',
-        module: 'readonly',
+        window: "readonly",
+        document: "readonly",
+        process: "readonly",
+        module: "readonly",
       },
     },
     linterOptions: {
       reportUnusedDisableDirectives: true,
     },
+    ignores: [
+      "**/*.cy.js",
+      "**/*.test.js",
+      "**/node_modules/**",
+      "eslint.config.js",
+    ],
     rules: {
-      'no-unused-vars': 'warn',
-      semi: ['error', 'always'],
-      quotes: ['error', 'single'],
-      eqeqeq: 'error',
+      "no-unused-vars": "warn",
+      semi: ["error", "always"],
+      quotes: ["error", "single"],
+      eqeqeq: "error",
     },
   },
 
   // Override for Jest test files
   {
-    files: ['**/*.test.js'],
+    files: ["**/*.test.js"],
     languageOptions: {
       ecmaVersion: 2021,
-      sourceType: 'module',
+      sourceType: "module",
       globals: {
-        jest: 'readonly',
+        jest: "readonly",
       },
     },
     plugins: {
       jest: eslintPluginJest,
     },
     rules: {
-      'jest/prefer-expect-assertions': 'off',
+      "jest/prefer-expect-assertions": "off",
     },
   },
 
   // Override for Cypress test files
   {
-    files: ['**/*.cy.js'],
+    files: ["**/*.cy.js"],
     languageOptions: {
       ecmaVersion: 2021,
-      sourceType: 'module',
+      sourceType: "module",
       globals: {
-        'cypress/globals': true,
+        "cypress/globals": true,
       },
     },
     plugins: {
       cypress: eslintPluginCypress,
     },
     rules: {
-      'cypress/no-unnecessary-waiting': 'off',
-      'no-unused-vars': 'off',
+      "cypress/no-unnecessary-waiting": "off",
+      "no-unused-vars": "off",
     },
   },
 ];
