@@ -7,13 +7,12 @@
   "scripts": {
     "build": "sass src/scss:dist/css",
     "start": "sass --watch src/scss:dist/css & live-server",
-    "format": "prettier -w src/js/**/*.js src/scss/**/*.scss",
-    "lint": "eslint src/js/**/*.js",
-    "lint:fix": "eslint --fix src/js/**/*.js",
+    "format": "prettier -w src/js/**/*.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix . *.js",
     "prepare": "husky install",
     "test": "npm run test-unit && npm run test-e2e-cli",
     "test-e2e": "cypress open",
-    "test-e2e-report": "cypress run --reporter mochawesome",
     "test-e2e-cli": "cypress run",
     "test-unit": "jest"
   },
@@ -42,14 +41,14 @@
   },
   "lint-staged": {
     "*.js": [
-      "prettier --w",
-      "eslint --fix"
+      "eslint --fix",
+      "prettier --write"
     ],
     "*.html": [
-      "prettier --w"
+      "prettier --write"
     ],
     "*.scss": [
-      "prettier --w"
+      "prettier --write"
     ],
     "!*.test.js": [],
     "!*.cy.js": []
