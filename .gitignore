@@ -1,2 +1,9 @@
+# Node modules
 /node_modules
 /dist
+
+# mac system files
+.DS_Store
+
+# Eslint cache
+.eslintcache
